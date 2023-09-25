@@ -30,7 +30,7 @@ class StateUpdaterThread(threading.Thread):
             try:
                 state_dict = fetch_health_state(self.dht)
                 with self.app.app_context():
-                    self.state_html = render_template("index.html", **state_dict)
+                    self.state_html = render_template("origin.html", **state_dict)
                     self.prometheus_metrics = get_prometheus_metrics(state_dict)
                 self.state_json = simplejson.dumps(state_dict, indent=2, ignore_nan=True, default=json_default)
 

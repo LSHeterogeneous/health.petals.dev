@@ -23,9 +23,12 @@ updater = StateUpdaterThread(dht, app, daemon=True)
 updater.start()
 updater.ready.wait()
 
-
 @app.route("/")
-def main_page():
+def index_page():
+    return app.send_static_file("index.html")
+
+@app.route("/origin")
+def origin_page():
     return updater.state_html
 
 
